@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Milan</string>
+    <string name="new_user_signup">New User? SignUp</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="hey_there_welcome">Hey there,
+        <br>Welcome</br>
+    </string>
+    <string name="create_account">Create
+       <br>Account</br>
+    </string>
+    <string name="name">Name</string>
+    <string name="register">Register</string>
+    <string name="already_a_user_sign_in">Already a User? Sign In</string>
 </resources>
