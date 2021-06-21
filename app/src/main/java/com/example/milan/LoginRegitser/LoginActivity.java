@@ -38,9 +38,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         newUser=findViewById(R.id.newUser);
-        mLoginEmailField = (EditText) findViewById( R.id.etEmail );
-        mLoginPasswordField = (EditText) findViewById( R.id.etPassword);
-        mLoginBtn = (ImageButton) findViewById( R.id.btnGo);
+        mLoginEmailField = findViewById( R.id.etEmail );
+        mLoginPasswordField =  findViewById( R.id.etPassword);
+        mLoginBtn =  findViewById( R.id.btnGo);
         mAuth = FirebaseAuth.getInstance();
         String user=newUser.getText().toString();
         mProgress = new ProgressDialog( this );
@@ -53,19 +53,16 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent=new Intent(LoginActivity.this,SignUpActivity.class);
             startActivity(intent);
         });
-        mLoginBtn.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = mLoginEmailField.getText().toString().trim();
-                String password = mLoginPasswordField.getText().toString().trim();
-                if (!TextUtils.isEmpty( email ) || !TextUtils.isEmpty( password )) {
-                    mProgress.setMessage( "logging in" );
-                    mProgress.setCanceledOnTouchOutside( true );
-                    mProgress.show();
-                    loginUser( email, password );
-                }
+        mLoginBtn.setOnClickListener(view -> {
+            String email = mLoginEmailField.getText().toString().trim();
+            String password = mLoginPasswordField.getText().toString().trim();
+            if (!TextUtils.isEmpty( email ) || !TextUtils.isEmpty( password )) {
+                mProgress.setMessage( "logging in" );
+                mProgress.setCanceledOnTouchOutside( true );
+                mProgress.show();
+                loginUser( email, password );
             }
-        } );
+        });
     }
 
     private void loginUser(String email, String password) {
