@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#364F6B"
     android:orientation="vertical"
-    tools:context=".InterestActivity">
+    tools:context=".LoginRegitser.InterestActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

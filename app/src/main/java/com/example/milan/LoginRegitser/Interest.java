@@ -1,4 +1,4 @@
-package com.example.milan;
+package com.example.milan.LoginRegitser;
 
 public class Interest {
     String interest;

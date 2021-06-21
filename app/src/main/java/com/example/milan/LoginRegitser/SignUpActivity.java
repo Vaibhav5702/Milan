@@ -1,4 +1,4 @@
-package com.example.milan;
+package com.example.milan.LoginRegitser;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.UnderlineSpan;
 import android.widget.TextView;
+
+import com.example.milan.R;
 
 public class SignUpActivity extends AppCompatActivity {
 

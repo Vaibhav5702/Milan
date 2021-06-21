@@ -1,10 +1,12 @@
-package com.example.milan;
+package com.example.milan.LoginRegitser;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.example.milan.R;
 
 import java.util.ArrayList;
 
