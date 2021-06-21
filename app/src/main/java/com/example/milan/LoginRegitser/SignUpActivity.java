@@ -48,6 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
         mEmailField=(EditText) findViewById(R.id.etEmail);
         mPasswordField=(EditText) findViewById(R.id.etPassword);
         mRegisterBtn=(ImageButton) findViewById(R.id.btnGo);
+        mAuth=FirebaseAuth.getInstance();
         String user=alreadyUser.getText().toString();
         Spannable spannable=new SpannableString(user);
         spannable.setSpan(new ForegroundColorSpan(Color.rgb(63,93,201)),16,user.length(),0);
@@ -81,7 +82,6 @@ public class SignUpActivity extends AppCompatActivity {
                 {  mProgress.dismiss();
 
                     Intent mainIntent =new Intent(SignUpActivity.this,InterestActivity.class);
-                    mainIntent.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK );
                     startActivity( mainIntent );
 
 
