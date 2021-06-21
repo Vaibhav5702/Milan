@@ -1,4 +1,4 @@
-package com.example.milan.LoginRegitser;
+package com.example.milan.LoginRegister;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +13,7 @@ import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.UnderlineSpan;
 import android.view.View;
-import android.widget.Button;
+
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         newUser.setText(spannable);
         newUser.setOnClickListener(v->
         {
-            Intent intent=new Intent(LoginActivity.this,SignUpActivity.class);
+            Intent intent=new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent);
         });
         mLoginBtn.setOnClickListener(view -> {
@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 } else {
                     mProgress.hide();
-                    Toast.makeText( LoginActivity.this, "cannot sign in user", Toast.LENGTH_LONG );
+                    Toast.makeText( LoginActivity.this, "cannot sign in user", Toast.LENGTH_LONG ).show();
 
                 }
             }

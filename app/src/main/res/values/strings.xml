@@ -13,4 +13,8 @@
     <string name="already_a_user_sign_in">Already a User? Sign In</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="verify_your_email_to_proceed">A verification email has been sent to your email address."\n"
+        Please verify to proceed.
+    </string>
+    <string name="proceed">Proceed!</string>
 </resources>

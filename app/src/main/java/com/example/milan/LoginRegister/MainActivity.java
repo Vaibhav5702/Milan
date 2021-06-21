@@ -1,12 +1,11 @@
-package com.example.milan.LoginRegitser;
+package com.example.milan.LoginRegister;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
-import com.example.milan.ChooseActivity;
 import com.example.milan.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent= new Intent(MainActivity.this, SignUpActivity.class);
+        Intent intent= new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 }
