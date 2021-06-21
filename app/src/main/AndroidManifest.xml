@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Milan">
         <activity android:name=".ChooseActivity"></activity>
-        <activity android:name=".LoginRegitser.InterestActivity" />
-        <activity android:name=".LoginRegitser.SignUpActivity" />
-        <activity android:name=".LoginRegitser.LoginActivity" />
-        <activity android:name=".LoginRegitser.MainActivity">
+        <activity android:name=".LoginRegistser.InterestActivity" />
+        <activity android:name=".LoginRegistser.SignUpActivity" />
+        <activity android:name=".LoginRegistser.LoginActivity" />
+        <activity android:name=".LoginRegistser.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

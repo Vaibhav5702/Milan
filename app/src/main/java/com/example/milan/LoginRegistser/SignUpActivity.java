@@ -1,4 +1,4 @@
-package com.example.milan.LoginRegitser;
+package com.example.milan.LoginRegistser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressDialog mProgress;
     TextView alreadyUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,8 +84,6 @@ public class SignUpActivity extends AppCompatActivity {
 
                     Intent mainIntent =new Intent(SignUpActivity.this,InterestActivity.class);
                     startActivity( mainIntent );
-
-
                 }
                 else
                 {   mProgress.hide();

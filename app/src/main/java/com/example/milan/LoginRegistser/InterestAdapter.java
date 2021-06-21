@@ -1,4 +1,4 @@
-package com.example.milan.LoginRegitser;
+package com.example.milan.LoginRegistser;
 
 import android.content.Context;
 import android.graphics.Color;
