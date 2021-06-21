@@ -1,9 +1,7 @@
-package com.example.milan.LoginRegistser;
+package com.example.milan.LoginRegister;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,22 +11,14 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.UnderlineSpan;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.milan.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
 
 public class SignUpActivity extends AppCompatActivity {
     private EditText mNameField;
@@ -60,39 +50,43 @@ public class SignUpActivity extends AppCompatActivity {
             Intent intent=new Intent(SignUpActivity.this,LoginActivity.class);
             startActivity(intent);
         });
-        mRegisterBtn.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name=mNameField.getText().toString().trim();
-                String email=mEmailField.getText().toString().trim();
-                String password=mPasswordField.getText().toString().trim();
-                if(!TextUtils.isEmpty(name)&&!TextUtils.isEmpty(email)&&!TextUtils.isEmpty(password)){
-                    mProgress.setMessage( "registering user" );
-                    mProgress.setCanceledOnTouchOutside( true );
-                    mProgress.show();
-                    startRegister(name,email,password);}
+        mRegisterBtn.setOnClickListener(view -> {
+            String name=mNameField.getText().toString().trim();
+            String email=mEmailField.getText().toString().trim();
+            String password=mPasswordField.getText().toString().trim();
+            if(!TextUtils.isEmpty(name)&&!TextUtils.isEmpty(email)&&!TextUtils.isEmpty(password)){
+                mProgress.setMessage( "Registering" );
+                mProgress.setCanceledOnTouchOutside( true );
+                mProgress.show();
+                startRegister(name,email,password);
             }
-        } );
+        });
     }
 
     private void startRegister(String name, String email, String password) {
-        mAuth.createUserWithEmailAndPassword( email,password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful())
-                {  mProgress.dismiss();
+        mAuth.createUserWithEmailAndPassword( email,password).addOnCompleteListener(task -> {
+            if(task.isSuccessful())
+            {  mProgress.dismiss();
+               FirebaseUser user=mAuth.getCurrentUser();
+                assert user != null;
+                user.sendEmailVerification().addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()){
+                        Intent mainIntent =new Intent(SignUpActivity.this,VerificationActivity.class);
+                        startActivity( mainIntent );
+                    }
+                    else{
+                        Toast.makeText(this, "Some Error Occurred while creating" +
+                                "your account", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-                    Intent mainIntent =new Intent(SignUpActivity.this,InterestActivity.class);
-                    startActivity( mainIntent );
-                }
-                else
-                {   mProgress.hide();
-                    String message=task.getException().toString();
-                    Toast.makeText(SignUpActivity.this,message,Toast.LENGTH_LONG).show();
-
-                }
             }
-        } );
+            else
+            {   mProgress.hide();
+                Toast.makeText(this, "Some Error Occurred while creating" +
+                        "your account", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
     }
