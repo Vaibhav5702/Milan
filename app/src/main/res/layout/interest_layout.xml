@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#364f6b"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.cardview.widget.CardView
         android:id="@+id/interest_card"
         android:layout_width="match_parent"
@@ -19,6 +21,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="10dp">
+
             <ImageView
                 android:id="@+id/interest_icon"
                 android:layout_width="40dp"
@@ -32,7 +35,7 @@
                 android:id="@+id/interest_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Music"
+                android:text="@string/music"
                 android:gravity="center_horizontal"
                 android:fontFamily="@font/inter_semi_bold"
                 android:layout_marginTop="15dp"

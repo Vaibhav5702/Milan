@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,7 +51,8 @@ public class VerificationActivity extends AppCompatActivity {
                 boolean verified=user.isEmailVerified();
 
                 if(verified){
-            HashMap<String,String> map=new HashMap();
+            HashMap<String,Object> map=new HashMap();
+            map.put("interests",new ArrayList<>());
             map.put("name",getIntent().getStringExtra("name"));
             firestore.collection("Users").document(user.getUid()).set(map);
                     Intent intent=new Intent(VerificationActivity.this, InterestActivity.class);
