@@ -7,12 +7,14 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 
+import com.example.milan.InterestSection.InterestDetailsAdapter;
+import com.example.milan.TabFragments.InterestsFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.jetbrains.annotations.NotNull;
 
-public class ChooseActivity extends AppCompatActivity {
+public class ChooseActivity extends AppCompatActivity implements InterestDetailsAdapter.ItemClick {
     TabLayout tabLayout;
     ViewPager2 viewPager;
     PagerAdapter adapter;
@@ -41,5 +43,10 @@ public class ChooseActivity extends AppCompatActivity {
                     }
                 });
         mediator.attach();
+    }
+
+    @Override
+    public void onItemClick(int i) {
+
     }
 }
