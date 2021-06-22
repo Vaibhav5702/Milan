@@ -72,6 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
                 user.sendEmailVerification().addOnCompleteListener(task1 -> {
                     if (task1.isSuccessful()){
                         Intent mainIntent =new Intent(SignUpActivity.this,VerificationActivity.class);
+                        mainIntent.putExtra("name",mNameField.getText().toString().trim());
                         startActivity( mainIntent );
                     }
                     else{
