@@ -52,7 +52,7 @@ public class VerificationActivity extends AppCompatActivity {
                 if(verified){
             HashMap<String,String> map=new HashMap();
             map.put("name",getIntent().getStringExtra("name"));
-            firestore.collection("Users").document().set(map);
+            firestore.collection("Users").document(user.getUid()).set(map);
                     Intent intent=new Intent(VerificationActivity.this, InterestActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
