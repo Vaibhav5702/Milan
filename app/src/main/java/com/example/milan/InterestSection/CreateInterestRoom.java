@@ -1,10 +1,8 @@
 package com.example.milan.InterestSection;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,13 +12,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.milan.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.jetbrains.annotations.NotNull;
+import org.jitsi.meet.sdk.JitsiMeetActivity;
 import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
 
 import java.net.MalformedURLException;
@@ -34,19 +28,28 @@ public class CreateInterestRoom extends AppCompatActivity {
     Button create_btn;
     Spinner interest_spinner;
     String categorySelected="",roomName="",subCategory="";
+    JitsiMeetConferenceOptions options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_interest_room);
-        create_btn=findViewById(R.id.create_int_room_btn);
-        interest_create_et=findViewById(R.id.interest_create_et);
+        create_btn=findViewById(R.id.create_res_room_btn);
+        interest_create_et=findViewById(R.id.restricted_create_et);
         interest_spinner=findViewById(R.id.category_interest);
         interest_sub_et=findViewById(R.id.interest_sub_et);
+        try {
+            options = new JitsiMeetConferenceOptions.Builder()
+                    .setServerURL(new URL(""))
+                    .setWelcomePageEnabled(false)
+                    .build();;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
         ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(this,
                 R.array.category, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         interest_spinner.setAdapter(adapter);
         interest_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -66,11 +69,9 @@ public class CreateInterestRoom extends AppCompatActivity {
     }
 
     private void createRoom() {
-        try {
             if(!subCategory.equals("N/A"))
                 roomName+="-"+subCategory;
-            JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions.Builder()
-                    .setServerURL(new URL(""))
+            options = new JitsiMeetConferenceOptions.Builder()
                     .setRoom(roomName)
                     .setFeatureFlag("add-people.enabled",false)
                     .setFeatureFlag("chat.enabled",false)
@@ -83,11 +84,9 @@ public class CreateInterestRoom extends AppCompatActivity {
                     .setAudioMuted(false)
                     .setVideoMuted(false)
                     .setAudioOnly(false)
-                    .setWelcomePageEnabled(false)
                     .build();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+            JitsiMeetActivity.launch(this,options);
+
     }
 
     public void storeDetails(){

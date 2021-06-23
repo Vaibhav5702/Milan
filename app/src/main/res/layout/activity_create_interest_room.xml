@@ -47,7 +47,7 @@
         app:layout_constraintGuide_percent="0.75" />
 
     <EditText
-        android:id="@+id/interest_create_et"
+        android:id="@+id/restricted_create_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/interest_create_et"
+        app:layout_constraintTop_toBottomOf="@id/restricted_create_et"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/interest_sub_et"
@@ -90,9 +90,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
-            android:dropDownWidth="5dp"
             android:dropDownSelector="@color/black"
-            android:orientation="vertical"
+            android:dropDownWidth="200dp"
             android:popupElevation="5dp"
             />
 
@@ -116,7 +115,7 @@
          />
 
     <Button
-        android:id="@+id/create_int_room_btn"
+        android:id="@+id/create_res_room_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/create"
