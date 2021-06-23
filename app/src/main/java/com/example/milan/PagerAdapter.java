@@ -34,9 +34,9 @@ public class PagerAdapter extends FragmentStateAdapter {
             case 0:
                 return new InterestsFragment(context);
             case 1:
-                return new AnonymousFragment();
+                return new AnonymousFragment(context);
             default:
-                return new RestrictedFragment();
+                return new RestrictedFragment(context);
         }
     }
 

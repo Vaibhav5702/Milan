@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,6 +18,7 @@
                 android:layout_height="50dp"
                 android:src="@drawable/interests_music"
                 android:layout_weight="1"/>
+
             <TextView
                 android:id="@+id/interest_text"
                 android:layout_width="wrap_content"
@@ -41,10 +43,11 @@
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 />
+
             <ImageView
                 android:id="@+id/dropdown"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/display_rooms"
                 android:layout_weight="1"

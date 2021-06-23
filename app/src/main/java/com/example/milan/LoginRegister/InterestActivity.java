@@ -58,7 +58,6 @@ public class InterestActivity extends AppCompatActivity implements InterestAdapt
                             startActivity(intent);
                         }
                     });
-
         });
     }
     public void createList()

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InterestSection.CreateInterestRoom">
+
+    <TextView
+        android:id="@+id/create_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ubuntu_regular"
+        android:text="@string/create_room"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/interest_img"
+        />
+
+
+    <ImageView
+        android:id="@+id/interest_img"
+        android:layout_width="261dp"
+        android:layout_height="180dp"
+        android:src="@drawable/people"
+        app:layout_constraintBottom_toTopOf="@+id/guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/create_tv" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.40" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <EditText
+        android:id="@+id/interest_create_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:hint="@string/room_name"
+        android:textColor="@color/black"
+        android:inputType="text"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="10dp"
+        android:fontFamily="@font/segoe_ui"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/linearl"
+        app:layout_constraintTop_toBottomOf="@+id/guideline1" />
+
+    <LinearLayout
+        android:id="@+id/linearl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/interest_create_et"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/interest_sub_et"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/choose_text"
+            android:text="@string/choose_a_category"
+            android:fontFamily="@font/inter_semi_bold"
+            android:textSize="15sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <Spinner
+            android:id="@+id/category_interest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:dropDownWidth="5dp"
+            android:dropDownSelector="@color/black"
+            android:orientation="vertical"
+            android:popupElevation="5dp"
+            />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/interest_sub_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:hint="@string/enter_sub_category"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="10dp"
+        android:fontFamily="@font/segoe_ui"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearl"
+        app:layout_constraintBottom_toTopOf="@id/guideline2"
+         />
+
+    <Button
+        android:id="@+id/create_int_room_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline2"
+        android:backgroundTint="#FC5185"
+        android:textSize="15sp"
+        android:padding="15dp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

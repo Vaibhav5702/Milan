@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Milan">
-        <activity android:name=".LoginRegister.VerificationActivity"></activity>
+        <activity android:name=".RestrictedSection.CreateRestrictedActivity"></activity>
+        <activity android:name=".AnonymousSection.CreateAnonymousRoom" />
+        <activity android:name=".InterestSection.CreateInterestRoom" />
+        <activity android:name=".LoginRegister.VerificationActivity" />
         <activity android:name=".ChooseActivity" />
         <activity android:name=".LoginRegister.InterestActivity" />
         <activity android:name=".LoginRegister.SignUpActivity" />

@@ -57,9 +57,9 @@ public class InterestDetailsAdapter extends RecyclerView.Adapter<InterestDetails
                 holder.interest_icon.setImageResource(R.drawable.interests_games);
                 holder.interest_text.setText("Games");
                 break;
-            case "literature":
+            case "poetry":
                 holder.interest_icon.setImageResource(R.drawable.interests_book);
-                holder.interest_text.setText("Literature");
+                holder.interest_text.setText("Poetry");
                 break;
             case "sports":
                 holder.interest_icon.setImageResource(R.drawable.interests_ball);

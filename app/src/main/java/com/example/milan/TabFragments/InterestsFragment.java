@@ -1,6 +1,7 @@
 package com.example.milan.TabFragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
+import com.example.milan.InterestSection.CreateInterestRoom;
 import com.example.milan.InterestSection.InterestDetails;
 import com.example.milan.InterestSection.InterestDetailsAdapter;
 import com.example.milan.R;
@@ -39,6 +42,8 @@ public class InterestsFragment extends Fragment {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
+    ImageButton interests_fab;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,6 +55,7 @@ public class InterestsFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         list=new ArrayList<>();
+        interests_fab=view.findViewById(R.id.interests_fab);
         recyclerView=view.findViewById(R.id.interestsRv);
         layoutManager=new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
         adapter=new InterestDetailsAdapter(context,list);
@@ -57,6 +63,8 @@ public class InterestsFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         createList();
+
+        interests_fab.setOnClickListener(v -> startActivity(new Intent(context, CreateInterestRoom.class)));
 
     }
     public void createList()
