@@ -71,6 +71,7 @@ public class CreateRestrictedActivity extends AppCompatActivity {
         else{
             Map<String,Object> map=new HashMap<>();
             map.put("roomName",roomName);
+            map.put("category",categorySelected);
             FirebaseFirestore.getInstance().collection("Restricted").add(map)
                     .addOnCompleteListener(task -> {
                         if(task.isSuccessful()){
