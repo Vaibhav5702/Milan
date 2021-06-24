@@ -10,6 +10,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -50,8 +51,8 @@ public class InterestDetailsAdapter extends RecyclerView.Adapter<InterestDetails
         ProgressBar interests_progress;
         RecyclerView.Adapter adapter;
         RecyclerView.LayoutManager layoutManager;
-        ArrayList<RoomDetails> roomList;
         boolean isVisible;
+        ArrayList<RoomDetails> roomList;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -62,14 +63,19 @@ public class InterestDetailsAdapter extends RecyclerView.Adapter<InterestDetails
             interests_progress=itemView.findViewById(R.id.interest_roomProgress);
             interest_recycler=itemView.findViewById(R.id.recycler_interest_rooms);
             isVisible=false;
-            interest_recycler.setHasFixedSize(true);
             roomList=new ArrayList();
+            interest_recycler.setHasFixedSize(true);
             itemView.setOnClickListener(v -> {
                 InterestDetailsAdapter.this.activity.onItemClick(InterestDetailsAdapter.this.list.indexOf((InterestDetails) v.getTag()));
-                getRoomData(interest_text.getText().toString());
+                getRoomData();
             });
         }
-        public void getRoomData(String interest){
+        public void getRoomData(){
+            if(active_rooms.getText().toString().equals("0"))
+            {
+                Toast.makeText(context, "There are currently no rooms available!", Toast.LENGTH_SHORT).show();
+                return;
+            }
             if (!isVisible){
                 RotateAnimation rotate = new RotateAnimation(0, 90, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
                 rotate.setDuration(200);
@@ -77,30 +83,9 @@ public class InterestDetailsAdapter extends RecyclerView.Adapter<InterestDetails
                 rotate.setInterpolator(new LinearInterpolator());
                 isVisible=true;
                 dropdown.startAnimation(rotate);
-                interests_progress.setVisibility(View.VISIBLE);
-                adapter=new RoomAdapter(context,roomList);
-                layoutManager=new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
-                interest_recycler.setAdapter(adapter);
-                interest_recycler.setLayoutManager(layoutManager);
-                FirebaseFirestore.getInstance().collection("Interests").document("AllInterests")
-                        .collection(interest).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                       if (task.isSuccessful()){
-                          QuerySnapshot snapshots= task.getResult();
+                interests_progress.setVisibility(View.GONE);
+                interest_recycler.setVisibility(View.VISIBLE);
 
-                           assert snapshots != null;
-                           for(QueryDocumentSnapshot documentSnapshot : snapshots){
-                              roomList.add(new RoomDetails(
-                                      documentSnapshot.get("roomName").toString(),documentSnapshot.get("subCategory").toString(),"interests"
-                              ));
-                          }
-                           adapter.notifyDataSetChanged();
-                           interests_progress.setVisibility(View.GONE);
-                           interest_recycler.setVisibility(View.VISIBLE);
-                       }
-                    }
-                });
             }
             else{
                 RotateAnimation rotate = new RotateAnimation(90, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
@@ -111,6 +96,32 @@ public class InterestDetailsAdapter extends RecyclerView.Adapter<InterestDetails
                 interest_recycler.setVisibility(View.GONE);
                 isVisible=false;
             }
+        }
+        public void setRecyclerData(String interest)
+        {
+            adapter=new RoomAdapter(context,roomList);
+            layoutManager=new LinearLayoutManager(context,RecyclerView.VERTICAL,false);
+            interest_recycler.setAdapter(adapter);
+            interest_recycler.setLayoutManager(layoutManager);
+            FirebaseFirestore.getInstance().collection("Interests").document("AllInterests")
+                    .collection(interest).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()){
+                        QuerySnapshot snapshots= task.getResult();
+
+                        assert snapshots != null;
+                        for(QueryDocumentSnapshot documentSnapshot : snapshots){
+                            roomList.add(new RoomDetails(
+                                    documentSnapshot.get("roomName").toString(),documentSnapshot.get("subCategory").toString(),"interests"
+                            ));
+                        }
+                        adapter.notifyDataSetChanged();
+                        String active=String.valueOf(adapter.getItemCount());
+                        active_rooms.setText(active);
+                    }
+                }
+            });
         }
     }
 
@@ -139,6 +150,7 @@ public class InterestDetailsAdapter extends RecyclerView.Adapter<InterestDetails
                 holder.interest_text.setText("Sports");
                 break;
         }
+        holder.setRecyclerData(holder.interest_text.getText().toString());
     }
 
     public int getItemCount() {

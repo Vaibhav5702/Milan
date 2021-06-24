@@ -77,15 +77,10 @@ public class InterestsFragment extends Fragment {
                        assert snapshot != null;
                        for(String interest:(ArrayList<String>) Objects.requireNonNull(snapshot.get("interests")))
                        {
-                           list.add(new InterestDetails(interest,4));
+                           list.add(new InterestDetails(interest));
                        }
                        adapter.notifyDataSetChanged();
                    }
                 });
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-        adapter.notifyDataSetChanged();
     }
 }

@@ -68,52 +68,52 @@ public class InterestAdapter extends RecyclerView.Adapter<InterestAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.itemView.setTag(this.list.get(position));
         switch (this.list.get(position).getInterest()) {
-            case "music":
+            case "Music":
                 holder.interest_text.setText("Music");
                 holder.interest_icon.setImageResource(R.drawable.music_interest);
                 holder.interest_card.getBackground().setTint(list.get(position).getColor());
                 break;
-            case "poetry":
+            case "Poetry":
                 holder.interest_text.setText("Poetry");
                 holder.interest_icon.setImageResource(R.drawable.poetry_interest);
                 holder.interest_card.getBackground().setTint(list.get(position).getColor());
                 break;
-            case "sports":
+            case "Sports":
                 holder.interest_text.setText("Sports");
                 holder.interest_icon.setImageResource(R.drawable.sports_interest);
                 holder.interest_card.getBackground().setTint(list.get(position).getColor());
                 break;
-            case "literature":
+            case "Literature":
                 holder.interest_text.setText("Literature");
                 holder.interest_icon.setImageResource(R.drawable.literature_interest);
                 holder.interest_card.getBackground().setTint(list.get(position).getColor());
                 break;
-            case "games":
+            case "Games":
                 holder.interest_text.setText("Games");
                 holder.interest_icon.setImageResource(R.drawable.game_interest);
                 holder.interest_card.getBackground().setTint(list.get(position).getColor());
                 break;
-            case "movies":
+            case "Movies":
                 holder.interest_text.setText("Movies");
                 holder.interest_icon.setImageResource(R.drawable.movies_interest);
                 holder.interest_card.getBackground().setTint(list.get(position).getColor());
                 break;
-            case "debate":
+            case "Debate":
                 holder.interest_text.setText("Debate");
                 holder.interest_icon.setImageResource(R.drawable.debate_interest);
                 holder.interest_card.getBackground().setTint(list.get(position).getColor());
                 break;
-            case "technology":
+            case "Technology":
                 holder.interest_text.setText("Technology");
                 holder.interest_icon.setImageResource(R.drawable.tech_interest);
                 holder.interest_card.getBackground().setTint(list.get(position).getColor());
                 break;
-            case "comedy":
+            case "Comedy":
                 holder.interest_text.setText("Comedy");
                 holder.interest_icon.setImageResource(R.drawable.comedy_interest);
                 holder.interest_card.getBackground().setTint(list.get(position).getColor());
                 break;
-            case "fashion":
+            case "Fashion":
                 holder.interest_text.setText("Fashion");
                 holder.interest_icon.setImageResource(R.drawable.fashion_interest);
                 holder.interest_card.getBackground().setTint(list.get(position).getColor());
