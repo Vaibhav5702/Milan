@@ -63,16 +63,16 @@ public class InterestActivity extends AppCompatActivity implements InterestAdapt
     public void createList()
     {
         interestArrayList=new ArrayList<>();
-        interestArrayList.add(new Interest("music", Color.parseColor("#B2DFDB")));
-        interestArrayList.add(new Interest("poetry",Color.parseColor("#FFCDD2")));
-        interestArrayList.add(new Interest("sports",Color.parseColor("#FF8C8C")));
-        interestArrayList.add(new Interest("literature",Color.parseColor("#90A4AE")));
-        interestArrayList.add(new Interest("games",Color.parseColor("#BCABE1")));
-        interestArrayList.add(new Interest("movies",Color.parseColor("#B9F6CA")));
-        interestArrayList.add(new Interest("debate",Color.parseColor("#92C6C6")));
-        interestArrayList.add(new Interest("technology",Color.parseColor("#C5CAE9")));
-        interestArrayList.add(new Interest("comedy",Color.parseColor("#F0A9C2")));
-        interestArrayList.add(new Interest("fashion",Color.parseColor("#DDE398")));
+        interestArrayList.add(new Interest("Music", Color.parseColor("#B2DFDB")));
+        interestArrayList.add(new Interest("Poetry",Color.parseColor("#FFCDD2")));
+        interestArrayList.add(new Interest("Sports",Color.parseColor("#FF8C8C")));
+        interestArrayList.add(new Interest("Literature",Color.parseColor("#90A4AE")));
+        interestArrayList.add(new Interest("Games",Color.parseColor("#BCABE1")));
+        interestArrayList.add(new Interest("Movies",Color.parseColor("#B9F6CA")));
+        interestArrayList.add(new Interest("Debate",Color.parseColor("#92C6C6")));
+        interestArrayList.add(new Interest("Technology",Color.parseColor("#C5CAE9")));
+        interestArrayList.add(new Interest("Comedy",Color.parseColor("#F0A9C2")));
+        interestArrayList.add(new Interest("Fashion",Color.parseColor("#DDE398")));
     }
 
     @Override

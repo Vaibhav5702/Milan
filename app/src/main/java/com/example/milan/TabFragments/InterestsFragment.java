@@ -36,7 +36,6 @@ public class InterestsFragment extends Fragment {
     ArrayList<InterestDetails> list;
     public InterestsFragment(Context context) {
         this.context=context;
-        // Required empty public constructor
     }
 
     RecyclerView recyclerView;
@@ -78,7 +77,6 @@ public class InterestsFragment extends Fragment {
                        assert snapshot != null;
                        for(String interest:(ArrayList<String>) Objects.requireNonNull(snapshot.get("interests")))
                        {
-
                            list.add(new InterestDetails(interest,4));
                        }
                        adapter.notifyDataSetChanged();

@@ -1,20 +1,18 @@
 package com.example.milan;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
+
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 
 import com.example.milan.InterestSection.InterestDetailsAdapter;
-import com.example.milan.TabFragments.InterestsFragment;
+
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import org.jetbrains.annotations.NotNull;
 
-public class ChooseActivity extends AppCompatActivity implements InterestDetailsAdapter.ItemClick {
+public class ChooseActivity extends AppCompatActivity implements InterestDetailsAdapter.ItemClick, RoomAdapter.ItemClick {
     TabLayout tabLayout;
     ViewPager2 viewPager;
     PagerAdapter adapter;
@@ -47,6 +45,11 @@ public class ChooseActivity extends AppCompatActivity implements InterestDetails
 
     @Override
     public void onItemClick(int i) {
+
+    }
+
+    @Override
+    public void onItemClickRoom(int i) {
 
     }
 }

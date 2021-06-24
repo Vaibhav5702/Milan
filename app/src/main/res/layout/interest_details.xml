@@ -30,7 +30,7 @@
                 android:gravity="center"
                 android:layout_weight="7"/>
             <TextView
-                android:id="@+id/active_rooms"
+                android:id="@+id/active_rooms_interest"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:text="4"
@@ -57,5 +57,21 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <ProgressBar
+        android:id="@+id/interest_roomProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_interest_rooms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:visibility="gone"
+        />
 
 </LinearLayout>
