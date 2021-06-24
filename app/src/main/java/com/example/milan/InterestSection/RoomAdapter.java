@@ -1,4 +1,4 @@
-package com.example.milan;
+package com.example.milan.InterestSection;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.milan.R;
+import com.example.milan.RoomDetails;
 
 import org.jetbrains.annotations.NotNull;
 

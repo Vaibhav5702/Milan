@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import com.example.milan.InterestSection.InterestDetailsAdapter;
 
+import com.example.milan.InterestSection.RoomAdapter;
+import com.example.milan.RestrictedSection.RestrictedRoomAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -23,7 +25,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class ChooseActivity extends AppCompatActivity implements InterestDetailsAdapter.ItemClick, RoomAdapter.ItemClick {
+public class ChooseActivity extends AppCompatActivity implements InterestDetailsAdapter.ItemClick,
+        RoomAdapter.ItemClick, RestrictedRoomAdapter.ItemClick
+{
     TabLayout tabLayout;
     ViewPager2 viewPager;
     PagerAdapter adapter;
@@ -70,30 +74,37 @@ public class ChooseActivity extends AppCompatActivity implements InterestDetails
 
     @Override
     public void onItemClickRoom(String roomName) {
+        createRoom(roomName);
+    }
+
+    @Override
+    public void onItemClickRestricted(String roomName) {
+        roomName+="(Restricted)";
+        createRoom(roomName);
+    }
+
+    public void createRoom(String roomName){
         FirebaseFirestore.getInstance().collection("Users")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String userName=documentSnapshot.get("name").toString();
-                        JitsiMeetUserInfo info=new JitsiMeetUserInfo();
-                        info.setDisplayName(userName);
-                        options = new JitsiMeetConferenceOptions.Builder()
-                                .setRoom(roomName)
-                                .setUserInfo(info)
-                                .setFeatureFlag("add-people.enabled",false)
-                                .setFeatureFlag("chat.enabled",false)
-                                .setFeatureFlag("invite.enabled",false)
-                                .setFeatureFlag("meeting-password.enabled",false)
-                                .setFeatureFlag("live-streaming.enabled",false)
-                                .setFeatureFlag("kick-out.enabled",false)
-                                .setFeatureFlag("recording.enabled",false)
-                                .setFeatureFlag("calendar.enabled",false)
-                                .setAudioMuted(false)
-                                .setVideoMuted(false)
-                                .setAudioOnly(false)
-                                .build();
-                        JitsiMeetActivity.launch(ChooseActivity.this,options);
-                    }
-                });
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(documentSnapshot -> {
+            String userName=documentSnapshot.get("name").toString();
+            JitsiMeetUserInfo info=new JitsiMeetUserInfo();
+            info.setDisplayName(userName);
+            options = new JitsiMeetConferenceOptions.Builder()
+                    .setRoom(roomName)
+                    .setUserInfo(info)
+                    .setFeatureFlag("add-people.enabled",false)
+                    .setFeatureFlag("chat.enabled",false)
+                    .setFeatureFlag("invite.enabled",false)
+                    .setFeatureFlag("meeting-password.enabled",false)
+                    .setFeatureFlag("live-streaming.enabled",false)
+                    .setFeatureFlag("kick-out.enabled",false)
+                    .setFeatureFlag("recording.enabled",false)
+                    .setFeatureFlag("calendar.enabled",false)
+                    .setAudioMuted(false)
+                    .setVideoMuted(false)
+                    .setAudioOnly(false)
+                    .build();
+            JitsiMeetActivity.launch(ChooseActivity.this,options);
+        });
     }
 }

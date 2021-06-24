@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.milan.R;
-import com.example.milan.RoomAdapter;
 import com.example.milan.RoomDetails;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -93,7 +92,7 @@ public class InterestDetailsAdapter extends RecyclerView.Adapter<InterestDetails
                            assert snapshots != null;
                            for(QueryDocumentSnapshot documentSnapshot : snapshots){
                               roomList.add(new RoomDetails(
-                                      documentSnapshot.get("roomName").toString(),documentSnapshot.get("subCategory").toString()
+                                      documentSnapshot.get("roomName").toString(),documentSnapshot.get("subCategory").toString(),"interests"
                               ));
                           }
                            adapter.notifyDataSetChanged();

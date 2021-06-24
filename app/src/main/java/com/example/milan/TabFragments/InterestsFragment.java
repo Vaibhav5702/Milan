@@ -83,5 +83,9 @@ public class InterestsFragment extends Fragment {
                    }
                 });
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+    }
 }

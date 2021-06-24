@@ -39,6 +39,7 @@ public class CreateAnonymousRoom extends AppCompatActivity {
         else{
             Map<String,Object> map=new HashMap<>();
             map.put("roomName",roomName);
+            map.put("category","N/A");
             FirebaseFirestore.getInstance().collection("Anonymous").add(map)
                     .addOnCompleteListener(task -> {
                         if(task.isSuccessful()){
