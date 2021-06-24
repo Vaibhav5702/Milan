@@ -102,7 +102,6 @@ public class InterestDetailsAdapter extends RecyclerView.Adapter<InterestDetails
                        }
                     }
                 });
-
             }
             else{
                 RotateAnimation rotate = new RotateAnimation(90, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);

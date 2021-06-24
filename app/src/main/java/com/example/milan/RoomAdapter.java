@@ -19,7 +19,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
     List<RoomDetails> list;
 
     public interface ItemClick {
-        void onItemClickRoom(int i);
+        void onItemClickRoom(String roomName);
     }
 
     public RoomAdapter(Context context, List<RoomDetails> list) {
@@ -35,8 +35,14 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.ViewHolder> {
             super(itemView);
             roomName=itemView.findViewById(R.id.room_text);
             sub_categoryName=itemView.findViewById(R.id.sub_category);
+            itemView.setOnClickListener(v -> {
+                String roomCode=roomName.getText().toString().trim();
+                if(!sub_categoryName.equals("N/A"))
+                    roomCode+="-"+sub_categoryName.getText().toString().trim();
 
-            itemView.setOnClickListener(v -> RoomAdapter.this.activity.onItemClickRoom(RoomAdapter.this.list.indexOf((RoomDetails) v.getTag())));
+                RoomAdapter.this.activity.onItemClickRoom
+                        (roomCode);
+            });
         }
     }
 

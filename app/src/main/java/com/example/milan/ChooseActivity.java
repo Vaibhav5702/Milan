@@ -8,14 +8,26 @@ import android.os.Bundle;
 
 import com.example.milan.InterestSection.InterestDetailsAdapter;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.jitsi.meet.sdk.JitsiMeetActivity;
+import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
+import org.jitsi.meet.sdk.JitsiMeetUserInfo;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 public class ChooseActivity extends AppCompatActivity implements InterestDetailsAdapter.ItemClick, RoomAdapter.ItemClick {
     TabLayout tabLayout;
     ViewPager2 viewPager;
     PagerAdapter adapter;
+    JitsiMeetConferenceOptions options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +53,47 @@ public class ChooseActivity extends AppCompatActivity implements InterestDetails
                     }
                 });
         mediator.attach();
+
+        try {
+            options = new JitsiMeetConferenceOptions.Builder()
+                    .setServerURL(new URL(""))
+                    .setWelcomePageEnabled(false)
+                    .build();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onItemClick(int i) {
-
     }
 
     @Override
-    public void onItemClickRoom(int i) {
-
+    public void onItemClickRoom(String roomName) {
+        FirebaseFirestore.getInstance().collection("Users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String userName=documentSnapshot.get("name").toString();
+                        JitsiMeetUserInfo info=new JitsiMeetUserInfo();
+                        info.setDisplayName(userName);
+                        options = new JitsiMeetConferenceOptions.Builder()
+                                .setRoom(roomName)
+                                .setUserInfo(info)
+                                .setFeatureFlag("add-people.enabled",false)
+                                .setFeatureFlag("chat.enabled",false)
+                                .setFeatureFlag("invite.enabled",false)
+                                .setFeatureFlag("meeting-password.enabled",false)
+                                .setFeatureFlag("live-streaming.enabled",false)
+                                .setFeatureFlag("kick-out.enabled",false)
+                                .setFeatureFlag("recording.enabled",false)
+                                .setFeatureFlag("calendar.enabled",false)
+                                .setAudioMuted(false)
+                                .setVideoMuted(false)
+                                .setAudioOnly(false)
+                                .build();
+                        JitsiMeetActivity.launch(ChooseActivity.this,options);
+                    }
+                });
     }
 }
