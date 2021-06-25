@@ -4,47 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#444242"
     tools:context=".AnonymousCall">
 
-    <FrameLayout
-        android:id="@+id/bg_video_container"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.6"
+        android:fontFamily="@font/ubuntu_bold"
+        android:letterSpacing="0.15"
+        android:text="Anonymous"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </FrameLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="242dp"
+        android:layout_height="242dp"
+        android:src="@drawable/anonymous_call_bg"
+        app:layout_constraintBottom_toTopOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent">
+    <TextView
+        android:id="@+id/room_name_anonymous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semi_bold"
+        android:text="Darkest Secrets"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
 
-        <ImageView
-            android:id="@+id/audioBtn"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="20"
-            android:onClick="onAudioMuteClicked"
-            android:scaleType="centerInside"
-            android:src="@drawable/audio_toggle_btn" />
+    <ImageView
+        android:id="@+id/mic"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:onClick="onAudioMuteClicked"
+        android:src="@drawable/mic_on"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/leave"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline1" />
 
-        <ImageView
-            android:id="@+id/leaveBtn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="20"
-            android:onClick="onLeaveChannelClicked"
-            android:scaleType="centerInside"
-            android:src="@drawable/end_call" />
-
-
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/leave"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:onClick="onLeaveChannelClicked"
+        android:src="@drawable/end_call"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/mic"
+        app:layout_constraintTop_toTopOf="@id/guideline1" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

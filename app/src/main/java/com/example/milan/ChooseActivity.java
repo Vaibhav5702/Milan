@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.milan.AnonymousSection.CreateAnonymousRoom;
 import com.example.milan.InterestSection.InterestDetailsAdapter;
 
 import com.example.milan.InterestSection.RoomAdapter;
@@ -78,9 +80,22 @@ public class ChooseActivity extends AppCompatActivity implements InterestDetails
     }
 
     @Override
-    public void onItemClickRestricted(String roomName) {
-        roomName+="(Restricted)";
-        createRoom(roomName);
+    public void onItemClickRestricted(String roomName,String section) {
+        if(section.equals("anonymous"))
+        {
+            createRoomAnonymous(roomName);
+        }
+        else
+        {
+            roomName+="(Restricted)";
+            createRoom(roomName);
+        }
+    }
+
+    private void createRoomAnonymous(String roomName) {
+        Intent intent=new Intent(ChooseActivity.this, AnonymousCall.class);
+        intent.putExtra("roomName",roomName);
+        startActivity(intent);
     }
 
     public void createRoom(String roomName){

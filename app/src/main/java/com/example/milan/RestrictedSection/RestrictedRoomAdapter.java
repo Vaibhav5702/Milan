@@ -24,7 +24,7 @@ public class RestrictedRoomAdapter extends  RecyclerView.Adapter<RestrictedRoomA
     List<RoomDetails> list;
 
     public interface ItemClick {
-        void onItemClickRestricted(String roomName);
+        void onItemClickRestricted(String roomName,String section);
     }
 
     public RestrictedRoomAdapter(Context context, List<RoomDetails> list) {
@@ -36,6 +36,7 @@ public class RestrictedRoomAdapter extends  RecyclerView.Adapter<RestrictedRoomA
 
         TextView roomName,sub_categoryName;
         ImageView icon;
+        String section;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -43,8 +44,16 @@ public class RestrictedRoomAdapter extends  RecyclerView.Adapter<RestrictedRoomA
             sub_categoryName=itemView.findViewById(R.id.res_sub_category);
             icon=itemView.findViewById(R.id.icon_restricted);
             itemView.setOnClickListener(v -> {
-                String roomCode=roomName.getText().toString().trim();
-                RestrictedRoomAdapter.this.activity.onItemClickRestricted(roomCode);
+                String roomCode;
+                if(list.get(RestrictedRoomAdapter.this.list.indexOf((RoomDetails) v.getTag())).getSection().equals("anonymous"))
+                {
+                    section="anonymous";
+                }
+                else {
+                    section = "restricted";
+                }
+                roomCode = roomName.getText().toString().trim();
+                RestrictedRoomAdapter.this.activity.onItemClickRestricted(roomCode,section);
             });
         }
     }

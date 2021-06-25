@@ -34,7 +34,6 @@ public class AnonymousCall extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    setupRemoteVideoStream(uid);
                 }
             });
         }
@@ -54,12 +53,15 @@ public class AnonymousCall extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anonymous_call);
-
+        TextView textView=findViewById(R.id.room_name_anonymous);
         if(checkSelfPermission(REQUESTED_PERMISSIONS[0],PERMISSION_REQ_ID)&&checkSelfPermission(REQUESTED_PERMISSIONS[1],PERMISSION_REQ_ID))
         {
             initAgoraEngine();
         }
-        mRtcEngine.joinChannel(null, "test-channel", "Extra Optional Data", 0);
+        Intent intent=getIntent();
+        String roomName=intent.getStringExtra("roomName");
+        textView.setText(roomName);
+        mRtcEngine.joinChannel(getString(R.string.token), "anonymous", "Extra Optional Data", 0);
     }
     public boolean checkSelfPermission(String permission, int requestCode) {
         if (ContextCompat.checkSelfPermission(this,
@@ -108,25 +110,12 @@ public class AnonymousCall extends AppCompatActivity {
         mRtcEngine.disableVideo();
 
     }
-    private void setupRemoteVideoStream(int uid) {
-        FrameLayout videoContainer = findViewById(R.id.bg_video_container);
-        TextView view=new TextView(this);
-        view.setText("hello");
-        videoContainer.addView(view);
-        mRtcEngine.setRemoteSubscribeFallbackOption(io.agora.rtc.Constants.STREAM_FALLBACK_OPTION_AUDIO_ONLY);
-    }
     private void onRemoteUserLeft() {
-        removeVideo(R.id.bg_video_container);
     }
 
-    private void removeVideo(int containerID) {
-        FrameLayout videoContainer = findViewById(containerID);
-        videoContainer.removeAllViews();
-    }
     public void onLeaveChannelClicked(View view) {
         leaveChannel();
         finish();
-        removeVideo(R.id.bg_video_container);
     }
     private void leaveChannel() {
         mRtcEngine.leaveChannel();
@@ -135,10 +124,10 @@ public class AnonymousCall extends AppCompatActivity {
         ImageView btn = (ImageView) view;
         if (btn.isSelected()) {
             btn.setSelected(false);
-            btn.setImageResource(R.drawable.audio_toggle_btn);
+            btn.setImageResource(R.drawable.mic_off);
         } else {
             btn.setSelected(true);
-            btn.setImageResource(R.drawable.audio_toggle_active_btn);
+            btn.setImageResource(R.drawable.mic_on);
         }
 
         mRtcEngine.muteLocalAudioStream(btn.isSelected());
