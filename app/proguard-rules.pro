@@ -86,3 +86,4 @@
 
 # Rule to avoid build errors related to SVGs.
 -keep public class com.horcrux.svg.** {*;}
+-keep class io.agora.**{*;}

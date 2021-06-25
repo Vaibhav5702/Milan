@@ -25,6 +25,8 @@
     <string name="create_anonymous_room">Create Anonymous Room</string>
     <string name="create_restricted_room">Create Restricted Room</string>
     <string name="enter_sub_category">Enter sub-category</string>
+    <string name="agora_app_id">05e50966597e4cc5b0005aa1e5c44181</string>
+    <string name="agora_access_token">00605e50966597e4cc5b0005aa1e5c44181IAApr+Wk8FJXboTBr+dpsq5kB3pMrAaNQ9UQE0kaBGRCjN0PGogAAAAAEACqPfBqETTWYAEAAQAPNNZg</string>
 
     <string-array name="category">
         <item>Music</item>

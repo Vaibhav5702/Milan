@@ -1,6 +1,6 @@
 package com.example.milan.LoginRegister;
 
-import android.graphics.Color;
+
 
 public class Interest {
     String interest;
