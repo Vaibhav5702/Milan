@@ -1,6 +1,5 @@
 package com.example.milan.LoginRegister;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;

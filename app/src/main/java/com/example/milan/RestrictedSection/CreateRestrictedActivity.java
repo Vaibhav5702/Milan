@@ -8,6 +8,7 @@ import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,9 +17,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.milan.ChooseActivity;
 import com.example.milan.InterestSection.CreateInterestRoom;
 import com.example.milan.R;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.microsoft.cognitiveservices.speech.SpeechConfig;
+import com.microsoft.cognitiveservices.speech.SpeechRecognitionResult;
+import com.microsoft.cognitiveservices.speech.SpeechRecognizer;
+import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
 
 import org.jitsi.meet.sdk.JitsiMeetActivity;
 import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
@@ -30,6 +36,10 @@ import java.net.URL;
 import java.security.Permission;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 public class CreateRestrictedActivity extends AppCompatActivity {
 
@@ -38,6 +48,10 @@ public class CreateRestrictedActivity extends AppCompatActivity {
     Button create_res_room_btn;
     String roomName,categorySelected;
     JitsiMeetConferenceOptions options;
+    SpeechConfig speechConfig;
+    Timer timer;
+    Thread thread;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +59,9 @@ public class CreateRestrictedActivity extends AppCompatActivity {
         restricted_create_et=findViewById(R.id.restricted_create_et);
         category_restricted=findViewById(R.id.category_restricted);
         create_res_room_btn=findViewById(R.id.create_res_room_btn);
+        speechConfig = SpeechConfig.fromSubscription(
+                "cbd0c6c5fb63406db3588b382a5d3728", "centralindia");
+
         try {
             options = new JitsiMeetConferenceOptions.Builder()
                     .setServerURL(new URL(""))
@@ -93,7 +110,18 @@ public class CreateRestrictedActivity extends AppCompatActivity {
     }
 
     private void createRoom() {
-            roomName+="(Restricted)";
+        Runnable runnable=new Runnable() {
+            @Override
+            public void run() {
+                backgroundTask();
+            }
+        };
+
+        thread=new Thread(runnable);
+        thread.start();
+
+
+        roomName+="(Restricted)";
         options = new JitsiMeetConferenceOptions.Builder()
                 .setRoom(roomName)
                 .setFeatureFlag("add-people.enabled",false)
@@ -112,5 +140,49 @@ public class CreateRestrictedActivity extends AppCompatActivity {
                 .build();
 
         JitsiMeetActivity.launch(this,options);
+    }
+
+    public  void backgroundTask(){
+
+        timer=new Timer();
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    fromMic(speechConfig);
+                }
+                catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        },10,1000);
+    }
+
+    public void fromMic(SpeechConfig speechConfig) throws InterruptedException, ExecutionException {
+        AudioConfig audioConfig = AudioConfig.fromDefaultMicrophoneInput();
+        SpeechRecognizer recognizer = new SpeechRecognizer(speechConfig, audioConfig);
+
+        Future<SpeechRecognitionResult> task = recognizer.recognizeOnceAsync();
+        SpeechRecognitionResult result = task.get();
+        Log.i("RECOGNIZED: Text=" , result.getText());
+        if(result.getText().contains("***"))
+        {
+            JitsiMeetActivity activity=new JitsiMeetActivity();
+            activity.leave();
+
+            timer.cancel();
+            thread.interrupt();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(timer!=null) {
+            timer.cancel();
+            finish();
+        }
+
     }
 }
