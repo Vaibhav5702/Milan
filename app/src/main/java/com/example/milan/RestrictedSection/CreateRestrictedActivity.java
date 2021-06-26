@@ -60,7 +60,7 @@ public class CreateRestrictedActivity extends AppCompatActivity {
         category_restricted=findViewById(R.id.category_restricted);
         create_res_room_btn=findViewById(R.id.create_res_room_btn);
         speechConfig = SpeechConfig.fromSubscription(
-                "cbd0c6c5fb63406db3588b382a5d3728", "centralindia");
+                getString(R.string.subscription_key), getString(R.string.location));
 
         try {
             options = new JitsiMeetConferenceOptions.Builder()
@@ -156,7 +156,7 @@ public class CreateRestrictedActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        },10,1000);
+        },0,1000);
     }
 
     public void fromMic(SpeechConfig speechConfig) throws InterruptedException, ExecutionException {

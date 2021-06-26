@@ -28,6 +28,9 @@
     <string name="agora_app_id">05e50966597e4cc5b0005aa1e5c44181</string>
     <string name="token">00605e50966597e4cc5b0005aa1e5c44181IACtgYMFNmkBH7jdrPmDQYEE8W+EcgA0BH1AFZpSf2aikK7tMcIAAAAAEACqPfBq94LXYAEAAQD1gtdg</string>
 
+    <string name="subscription_key">cbd0c6c5fb63406db3588b382a5d3728</string>
+    <string name="location">centralindia</string>
+
     <string-array name="category">
         <item>Music</item>
         <item>Sports</item>
