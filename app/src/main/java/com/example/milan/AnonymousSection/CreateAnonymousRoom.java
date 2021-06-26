@@ -30,10 +30,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.agora.rtc.Constants;
-import io.agora.rtc.IRtcEngineEventHandler;
-import io.agora.rtc.RtcEngine;
-
 public class CreateAnonymousRoom extends AppCompatActivity {
 
     private static final String LOG_TAG = "Agora API";

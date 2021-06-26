@@ -1,7 +1,12 @@
 package com.example.milan.RestrictedSection;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,9 +22,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jitsi.meet.sdk.JitsiMeetActivity;
 import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
+import org.jitsi.meet.sdk.JitsiMeetOngoingConferenceService;
+import org.jitsi.meet.sdk.JitsiMeetView;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.Permission;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -96,10 +104,13 @@ public class CreateRestrictedActivity extends AppCompatActivity {
                 .setFeatureFlag("kick-out.enabled",false)
                 .setFeatureFlag("recording.enabled",false)
                 .setFeatureFlag("calendar.enabled",false)
+                .setFeatureFlag("disableRemoteMute",true)
+                .setWelcomePageEnabled(false)
                 .setAudioMuted(false)
                 .setVideoMuted(false)
                 .setAudioOnly(false)
                 .build();
+
         JitsiMeetActivity.launch(this,options);
     }
 }

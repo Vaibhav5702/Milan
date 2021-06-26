@@ -1,6 +1,8 @@
 package com.example.milan;
 
 import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -44,4 +46,5 @@ public class PagerAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return 3;
     }
+
 }

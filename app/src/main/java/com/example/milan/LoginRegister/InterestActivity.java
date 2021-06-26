@@ -77,11 +77,6 @@ public class InterestActivity extends AppCompatActivity implements InterestAdapt
 
     @Override
     public void onItemClick(int pos, boolean onTap) {
-        if(i>=2){
-            proceed_btn.setVisibility(View.VISIBLE);
-        }
-        else
-            proceed_btn.setVisibility(View.GONE);
         if(onTap){
             i++;
             interestList.add(interestArrayList.get(pos).getInterest());
@@ -90,5 +85,10 @@ public class InterestActivity extends AppCompatActivity implements InterestAdapt
             i--;
             interestList.remove(interestArrayList.get(pos).getInterest());
         }
+        if(i>=2){
+            proceed_btn.setVisibility(View.VISIBLE);
+        }
+        else
+            proceed_btn.setVisibility(View.GONE);
     }
 }
