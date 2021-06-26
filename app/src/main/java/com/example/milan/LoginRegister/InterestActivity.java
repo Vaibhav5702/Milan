@@ -89,5 +89,6 @@ public class InterestActivity extends AppCompatActivity implements InterestAdapt
         }
         else
             proceed_btn.setVisibility(View.GONE);
+
     }
 }
