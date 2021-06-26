@@ -124,12 +124,12 @@ public class AnonymousCall extends AppCompatActivity {
         ImageView btn = (ImageView) view;
         if (btn.isSelected()) {
             btn.setSelected(false);
-            btn.setImageResource(R.drawable.mic_off);
+            mRtcEngine.muteLocalAudioStream(false);
+            btn.setImageResource(R.drawable.mic_on);
         } else {
             btn.setSelected(true);
-            btn.setImageResource(R.drawable.mic_on);
+            mRtcEngine.muteLocalAudioStream(true);
+            btn.setImageResource(R.drawable.mic_off);
         }
-
-        mRtcEngine.muteLocalAudioStream(btn.isSelected());
     }
 }
