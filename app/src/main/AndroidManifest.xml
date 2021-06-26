@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Milan">
-        <activity android:name=".AnonymousCall"></activity>
+        <activity android:name=".AnonymousSection.AnonymousCall"></activity>
         <activity android:name=".RestrictedSection.CreateRestrictedActivity" />
         <activity android:name=".AnonymousSection.CreateAnonymousRoom" />
         <activity android:name=".InterestSection.CreateInterestRoom" />

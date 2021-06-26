@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#444242"
-    tools:context=".AnonymousCall">
+    tools:context=".AnonymousSection.AnonymousCall">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
