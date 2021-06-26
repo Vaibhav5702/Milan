@@ -12,12 +12,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.milan.ChooseActivity;
 import com.example.milan.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jitsi.meet.sdk.JitsiMeetActivity;
 import org.jitsi.meet.sdk.JitsiMeetActivityDelegate;
 import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
+import org.jitsi.meet.sdk.JitsiMeetUserInfo;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -70,10 +73,14 @@ public class CreateInterestRoom extends AppCompatActivity {
         });
     }
     private void createRoom() {
-            if(!subCategory.equals("N/A"))
-                roomName+="-"+subCategory;
+        FirebaseFirestore.getInstance().collection("Users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(documentSnapshot -> {
+            String userName=documentSnapshot.get("name").toString();
+            JitsiMeetUserInfo info=new JitsiMeetUserInfo();
+            info.setDisplayName(userName);
             options = new JitsiMeetConferenceOptions.Builder()
                     .setRoom(roomName)
+                    .setUserInfo(info)
                     .setFeatureFlag("add-people.enabled",false)
                     .setFeatureFlag("chat.enabled",false)
                     .setFeatureFlag("invite.enabled",false)
@@ -83,10 +90,11 @@ public class CreateInterestRoom extends AppCompatActivity {
                     .setFeatureFlag("recording.enabled",false)
                     .setFeatureFlag("calendar.enabled",false)
                     .setAudioMuted(false)
-                    .setVideoMuted(true)
+                    .setVideoMuted(false)
                     .setAudioOnly(false)
                     .build();
             JitsiMeetActivity.launch(this,options);
+        });
 
     }
 

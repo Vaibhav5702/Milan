@@ -1,4 +1,4 @@
-package com.example.milan;
+package com.example.milan.AnonymousSection;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.milan.R;
+
 import io.agora.rtc.Constants;
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
@@ -29,22 +31,14 @@ public class AnonymousCall extends AppCompatActivity {
     private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
         @Override
         public void onUserJoined(final int uid, int elapsed) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                }
+            runOnUiThread(() -> {
             });
         }
 
         // remote user has left channel
         @Override
         public void onUserOffline(int uid, int reason) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    onRemoteUserLeft();
-                }
-            });
+            runOnUiThread(() -> onRemoteUserLeft());
         }
     };
     @Override
@@ -122,12 +116,13 @@ public class AnonymousCall extends AppCompatActivity {
         ImageView btn = (ImageView) view;
         if (btn.isSelected()) {
             btn.setSelected(false);
-            btn.setImageResource(R.drawable.mic_off);
+            btn.setImageResource(R.drawable.mic_on);
+            mRtcEngine.muteLocalAudioStream(false);
         } else {
             btn.setSelected(true);
-            btn.setImageResource(R.drawable.mic_on);
+            btn.setImageResource(R.drawable.mic_off);
+            mRtcEngine.muteLocalAudioStream(true);
         }
 
-        mRtcEngine.muteLocalAudioStream(btn.isSelected());
     }
 }
